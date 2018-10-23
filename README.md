@@ -1,6 +1,4 @@
-# Project 1: Navigation
-
-### Overview
+### What's this repo about?
 
 This is project #1 of Udacity's deep reinforcement learning nanodegree. The goal here is to create an agent that navigates a space and (hopefully) learns to collect yellow bananas (+1 reward for each) and avoid blue bananas (-1 reward for each).
 
