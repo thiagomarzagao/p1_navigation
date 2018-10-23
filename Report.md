@@ -10,7 +10,7 @@ To achieve that result I used an adapted version of the [Deep Q-Learning](https:
 
 The important aspects of the DQN model are not so much its architectural details but two separate innovations: experience replay and target network. "Experience replay" means sampling randomly from a buffer of past experiences, each being a tuple of states, actions, and rewards: (s_t, a_t, r_t, s_t+1). By sampling randomly in the training stage we fix the problem of correlated states, which before the DQN model had limited the application of deep learning to reinforcement learning. "Target network" is a separate neural network with the same architecture of the main netural network but only updated every couple of iterations. The target network replaces the main network when we pick the action. That weakens the correlation between action-values and targets.
 
-### Adaptations to DQN model
+### Adaptations
 
 I used experience replay just as described in the original DQN paper (with a buffer size of 100k). I changed the target network though. Instead of outright cloning the main network I used a soft update, as suggested in the nanodegree lessons, to make the target network closer to the main network. I set the soft updates to happen every four iterations.
 
@@ -21,3 +21,9 @@ More importantly, here I used only one hidden layer. As Jeff Heaton argues in hi
 I set the number of neurons of the hidden layer at 24, following the rule of thumb that the size of a hidden layer should be somewhere between that of the input layer (37) and that of the output layer (4), and ideally a power of 2 (to facilitate computation). I tried other values (16, 32, 64, 128) but found little effect on the result. The activation function is RELU.
 
 As for the hyperparameters, I set gamma (the discount factor) at 0.99, tau (used in the soft update) at 0.001, and the learning rate at 0.0005. I tried tweaking these values but that resulted in no improvement.
+
+### Ideas for future improvements
+
+In the future it might be worth it to try the Double-DQN algorithm with prioritized experience replay, as suggested in the nanodegree lesson. However, given that we can obtain a reasonable result with only one hidden layer of 24 neurons, a more enticing approach might be ditching neural networks entirely for this task and trying multinomial logit instead. A multinomial logit model, even if it performed slightly worse, would have the advantage of being interpretable - we could inspect the estimated coefficients to try to understand what's going on "under the hood" (why a state with such and such characteristics leads to such and such actions, etc).
+
+An interesting extension would be to take the task to the phyisical world. I have a set of LEGO Mindstorms and a while ago I wrote a [module](https://github.com/thiagomarzagao/ev3py) that lets us program it using Python. It might be interesting to see what happens when we attach a camera to it, adjust the state dimensions, find a way to randomly (re-)throw a bunch of fake bananas at every iteration, etc. It would probably help me have a better idea of the challenges of applying reinforcement learning to robotics in the real world.
