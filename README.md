@@ -1,6 +1,6 @@
 ### What's this repo about?
 
-This is project #1 of Udacity's deep reinforcement learning nanodegree. The goal here is to create an agent that navigates a space and (hopefully) learns to collect yellow bananas (+1 reward for each) and avoid blue bananas (-1 reward for each).
+This is project #1 of Udacity's deep reinforcement learning nanodegree. The goal here is to create an agent that navigates a space littered with bananas and (hopefully) learns to collect yellow bananas (+1 reward for each) and avoid blue bananas (-1 reward for each).
 
 The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
 
