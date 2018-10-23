@@ -37,14 +37,16 @@ class QNetwork(nn.Module):
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
         self.fc1 = nn.Linear(state_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, action_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size)
+        self.fc3 = nn.Linear(hidden_size, action_size)
 
     def forward(self, state):
         '''
         forward pass of the computation
         '''
         x = F.relu(self.fc1(state))
-        return self.fc2(x)
+        x = F.relu(self.fc2(x))
+        return self.fc3(x)
 
 class Agent():
     '''
@@ -244,12 +246,12 @@ for i_episode in range(1, n_episodes + 1):
     if np.mean(scores_window) >= 13.0:
         s_msg = '\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'
         print(s_msg.format(i_episode, np.mean(scores_window)))
-        torch.save(agent.qnet.state_dict(), 'checkpoint.pth')
+#        torch.save(agent.qnet.state_dict(), 'checkpoint.pth')
         break
 
 # plot scores over episodes
 df = pd.DataFrame()
-df['episode'] = range(664)
+df['episode'] = range(len(scores))
 df['score'] = scores
 df.plot.scatter(x = 'episode', y = 'score')
 plt.show()
