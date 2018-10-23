@@ -1,5 +1,7 @@
 import random
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -14,6 +16,8 @@ GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
 LR = 5e-4               # learning rate
 UPDATE_EVERY = 4        # how often to update the network
+PER_ALPHA = 0.6         # importance sampling exponent
+PER_BETA = 0.4          # prioritization exponent
 
 # set device
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -242,5 +246,12 @@ for i_episode in range(1, n_episodes + 1):
         print(s_msg.format(i_episode, np.mean(scores_window)))
         torch.save(agent.qnet.state_dict(), 'checkpoint.pth')
         break
+
+# plot scores over episodes
+df = pd.DataFrame()
+df['episode'] = range(664)
+df['score'] = scores
+df.plot.scatter(x = 'episode', y = 'score')
+plt.show()
 
 env.close()
