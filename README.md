@@ -15,13 +15,13 @@ The task is episodic, and in order to solve the environment, the agent must get 
 
 1. [Python 3.6](https://www.python.org/). It has to be 3.6 (3.5 or 3.7 won't work, because of PyTorch and Unity ML-Agents Toolkit).
 
-2. [NumPy](http://www.numpy.org/).
+2. [NumPy](http://www.numpy.org/)
 
-3. [Matplotlib](https://matplotlib.org/).
+3. [Matplotlib](https://matplotlib.org/)
 
-4. [pandas](https://pandas.pydata.org/).
+4. [pandas](https://pandas.pydata.org/)
 
-5. [PyTorch](https://pytorch.org/).
+5. [PyTorch](https://pytorch.org/)
 
 6. [Unity ML-Agents Toolkit](https://github.com/Unity-Technologies/ml-agents), which is an open-source plugin that enables games and simulations to serve as environments for training intelligent agents. Download their Banana app from one of the links below.
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
